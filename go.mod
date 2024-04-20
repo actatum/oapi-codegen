@@ -8,7 +8,7 @@ require (
 	golang.org/x/lint v0.0.0-20210508222113-6edffad5e616
 	golang.org/x/text v0.14.0
 	golang.org/x/tools v0.20.0
-	gopkg.in/yaml.v2 v2.4.0
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (
@@ -23,5 +23,4 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	golang.org/x/mod v0.17.0 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
