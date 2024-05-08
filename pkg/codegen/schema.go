@@ -118,6 +118,10 @@ func (p Property) GoTypeDef() string {
 			(p.ReadOnly && (!p.Required || !globalState.options.Compatibility.DisableRequiredReadOnlyAsPointer)) ||
 			p.WriteOnly) {
 
+		// if strings.HasPrefix(p.Schema.GoType, "[]") {
+		// 	return typeDef
+		// }
+
 		typeDef = "*" + typeDef
 	}
 	return typeDef
@@ -325,6 +329,7 @@ func GenerateGoSchema(sref *openapi3.SchemaRef, path []string) (Schema, error) {
 			}
 			outSchema.GoType = outType
 			outSchema.DefineViaAlias = true
+			outSchema.SkipOptionalPointer = true
 		} else {
 			// When we define an object, we want it to be a type definition,
 			// not a type alias, eg, "type Foo struct {...}"
@@ -571,6 +576,7 @@ func oapiSchemaToGoType(schema *openapi3.Schema, path []string, outSchema *Schem
 		if sliceContains(globalState.options.OutputOptions.DisableTypeAliasesForType, "array") {
 			outSchema.DefineViaAlias = false
 		}
+		outSchema.SkipOptionalPointer = true
 
 	case "integer":
 		// We default to int if format doesn't ask for something else.
